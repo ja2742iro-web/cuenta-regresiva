@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuestro Tiempo 💕</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    #contador, #tiempoJuntos {
+      font-size: 1.8em;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+      margin: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    #frase {
+      display:none; 
+      margin-top:20px; 
+      font-size:1.4em; 
+      background:white; 
+      padding:20px; 
+      border-radius:15px; 
+      box-shadow:0 4px 10px rgba(0,0,0,0.2); 
+      color:#444; 
+      line-height:1.6;
+    }
+    button {
+      margin-top:20px; 
+      padding:10px 20px; 
+      font-size:1.2em; 
+      border:none; 
+      border-radius:10px; 
+      background:#ff6b81; 
+      color:white; 
+      cursor:pointer; 
+      box-shadow:0 4px 6px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 Nuestro amor 💖</h1>
+
+  <!-- Aquí aparecerá el tiempo juntos -->
+  <div id="tiempoJuntos"></div>
+  <br><br>
+
+  <!-- Aquí aparecerá la cuenta regresiva -->
+  <div id="contador"></div>
+
+  <!-- Botón para mostrar frase -->
+  <button onclick="mostrarFrase()">💭 Yi Pienso Que...</button>
+
+  <!-- Contenedor oculto para la frase -->
+  <div id="frase"></div>
+
+  <script>
+    // 👉 FECHA DE INICIO DE RELACIÓN (pon aquí la tuya)
+    const fechaInicio = new Date("2023-02-08");
+
+    // 👉 PRÓXIMA FECHA ESPECIAL (ejemplo: próximo mesesario)
+    const fechaObjetivo = new Date("2025-09-08T20:00:00").getTime();
+
+    function calcularTiempoJuntos() {
+      const hoy = new Date();
+
+      let años = hoy.getFullYear() - fechaInicio.getFullYear();
+      let meses = hoy.getMonth() - fechaInicio.getMonth();
+
+      if (meses < 0) {
+        años--;
+        meses += 12;
+      }
+
+      document.getElementById("tiempoJuntos").innerHTML =
+        "Llevamos 💞 " + años + " años y " + meses + " meses juntos 💞";
+    }
+
+    function actualizarContador() {
+      const ahora = new Date().getTime();
+      const diferencia = fechaObjetivo - ahora;
+
+      if (diferencia <= 0) {
+        document.getElementById("contador").innerHTML = "🎉 ¡Ya llegó nuestra fecha especial! 🎉";
+        return;
+      }
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+      document.getElementById("contador").innerHTML =
+        "⏳ Faltan " + dias + " días " + horas + "h " + minutos + "m " + segundos + "s ";
+    }
+
+    function mostrarFrase() {
+      document.getElementById("frase").style.display = "block";
+      document.getElementById("frase").innerHTML = 
+        "✨ Al final del tiempo, mi niña, comprendí que no son los relojes los que guardan nuestro amor,<br>" +
+        "sino los instantes que nos hacen eternos.<br><br>" +
+        "Porque el tiempo no se mide en segundos ni en calendarios,<br>" +
+        "se mide en sonrisas que iluminan, en abrazos que curan,<br>" +
+        "en cada mirada donde el mundo se detiene.<br><br>" +
+        "💖 No es el tiempo lo que importa,<br>" +
+        "sino el tiempo que compartimos juntos<br>" +
+        "y los momentos que nos hacen infinito. 💖";
+    }
+
+    // 👉 Ejecutar funciones
+    calcularTiempoJuntos();
+    setInterval(actualizarContador, 1000);
+    actualizarContador();
+  </script>
+</body>
+</html>
